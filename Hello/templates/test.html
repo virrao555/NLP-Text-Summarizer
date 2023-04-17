@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Summarize {% endblock title %}
+
+{% block body %}
+<style>
+  .flex { 
+    display: flex;
+    }
+  .red {
+    background: white;
+    flex-grow: 1;
+    border-radius: 10px;
+  }
+
+  .flex > div {
+    font-size: 1vw;
+    padding: .1em;
+    color: black;
+  }
+  .textbox{
+    border: 2px solid white;
+    border-radius: 5px;
+    outline:none;
+    background:none;
+    padding:10px;
+    color:white;
+    border: 2px solid #c55bff;
+  }
+
+  .textbox:focus{
+    border: 2px solid #08FFF0;
+  }
+  </style>
+
+
+<br> <br> <br>
+<br> <br> <br>
+<br> <br> <br>
+<p style="color:white; font-size:50px;" align= "center" > Text <span class="auto-type text-warning"></p>
+
+
+  
+            
+<div class="mx-auto my-3" style="width: 300px">
+  <form action="/txtsumm" method="post">
+    {% csrf_token %}
+    <input class="textbox" size="30" type="text" name="txtsumm" placeholder="  Start writing here...  " required />
+    <br />
+    <br />
+    <div class="mx-auto my-auto" style="width: 150px " >
+    <button type="submit" class="btn btn-outline-warning" style="color:white;">Summarize</button>
+    </div>
+    <br />
+    <br />
+    
+  </form>
+</div>
+
+      <div class="mx-auto my-3" style="width: 500px " >
+        <div class="flex">
+          <div class="red">
+            {{data_txtsumm}} {{data8|linebreaks}}
+          </div>
+       </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+<br> 
+
+<br> <br> <br>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed(".auto-type",{
+      strings: ["Summarization","Condensation","Sum-up!"],
+      typeSpeed: 100,
+      backSpeed: 100,
+      loop: true
+  })
+</script>
+{% endblock body %}
